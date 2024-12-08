@@ -6,9 +6,7 @@
 {% endblock %} 
 
 {% block content %}
-<section class="page-header">
-  <h1>Nurseries List</h1>
-</section>
+
 
 <section class="card-container">
   {% for nurserie in nurseries %}
@@ -16,12 +14,12 @@
       <div class="card-content">
         <div class="card-img-container">
           <img
-            src="{{ nurserie.image }}"
+            src="{{ nurserie.file }}"
             alt="nurserie"
             class="card-img"
           />
         </div>
-        <h2 class="card-title">{{ nurserie.name }}</h2>
+        <h2 class="card-title">{{ nurserie.category }}</h2>
       </div>
     </div>
   {% endfor %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Nurseries
+from .models import Nurseries , Plants
 from django.http import HttpResponse
 
 
@@ -13,3 +13,8 @@ def about(request):
 def nurseries_index(request):
     nurseries = Nurseries.objects.all()
     return render(request, 'nurseries/index.html', {'nurseries': nurseries})
+
+
+def plant_list(request, nurserie_id):
+    plants = Plants.objects.all().filter(nurseries=nurserie_id)
+    return render(request, 'nurseries/plantlist.html', {'plants': plants})

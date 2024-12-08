@@ -1,10 +1,11 @@
 {% extends 'base.html' %} 
 {% load static %} 
-{% block head %}
-<link rel="stylesheet" href="{% static 'css/cats/cat-index.css' %}"/>
-{% endblock %} 
-{% block content %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/nurseries/nurseries-index.css' %}"/>
+{% endblock %} 
+
+{% block content %}
 <section class="page-header">
   <h1>Nurseries List</h1>
 </section>
@@ -17,6 +18,7 @@
           <img
             src="{{ nurserie.image }}"
             alt="nurserie"
+            class="card-img"
           />
         </div>
         <h2 class="card-title">{{ nurserie.name }}</h2>

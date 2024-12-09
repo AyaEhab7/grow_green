@@ -9,12 +9,12 @@
             <p>{{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>In Stock: {{ product.quantity }}</p>
+            <a href="{% url 'product-detail' product.id %}">View Details</a>
             {% if product.quantity > 0 %}
                 <a href="{% url 'product-request' product.id %}">Request</a>
             {% else %}
                 <p>Out of Stock</p>
             {% endif %}
-            <a href="{% url 'product-detail' product.id %}">View Details</a>
         </div>
     {% endfor %}
 </div>

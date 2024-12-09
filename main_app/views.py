@@ -111,37 +111,6 @@ class PlantUpdate(UpdateView):
 class PlantDelete(DeleteView):
     model = Plants
     success_url = '/nurseries/{nurseries_id}'
-    
-                  
-"""
-def add_irrigation(request, plant_id):
-    form = IrrigationForm(request.POST)
-    if form.is_valid():
-        new_irr = form.save(commit=False)
-        new_irr.plant_id = plant_id
-        new_irr.save()
-    
-def add_fertilization(request, plant_id):
-    form = FertilizationForm(request.POST)
-    if form.is_valid():
-        new_fer = form.save(commit=False)
-        new_fer.plant_id = plant_id
-        new_fer.save()
-        
-
-def add_pestControl(request, plant_id):
-    form = PestControlForm(request.POST)
-    if form.is_valid():
-        new_pest = form.save(commit=False)
-        new_pest.plant_id = plant_id
-        new_pest.save()
-         
-        
-    return redirect('plant_detail', plant_id = plant_id )        
-
-"""
-
-
 
 def store(request):
     products = Product.objects.all()

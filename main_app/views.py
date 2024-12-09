@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Nurseries , Plants, Irrigation, Fertilization, PestControl
+from .models import Nurseries , Plants, Irrigation, Fertilization, PestControl, Product, ProductRequest
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm 

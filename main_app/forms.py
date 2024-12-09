@@ -1,5 +1,4 @@
 from django import forms
-<<<<<<< HEAD
 from .models import Irrigation, Fertilization, PestControl
 
 class IrrigationForm(forms.ModelForm):
@@ -101,11 +100,9 @@ class PestControlForm(forms.ModelForm):
         label="Pest Control Status",
         required=True,
     )        """
-=======
 from .models import ProductRequest
 
 class ProductRequestForm(forms.ModelForm):
     class Meta:
         model = ProductRequest
         fields = ['quantity_requested']
->>>>>>> main

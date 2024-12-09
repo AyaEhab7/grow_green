@@ -53,7 +53,6 @@ class Plants(models.Model):
 
     def __str__(self):
         return self.name
-<<<<<<< HEAD
     
 class Irrigation(models.Model):
      date = models.DateTimeField("Irrigation Time")
@@ -102,7 +101,6 @@ class PestControl(models.Model):
          ordering = ['-date']     
                 
         
-=======
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -124,4 +122,3 @@ class ProductRequest(models.Model):
 
     def __str__(self):
         return f"{self.farmer_name} - {self.product.name}"
->>>>>>> main

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render,get_object_or_404, redirect
 from .models import Nurseries , Plants, Irrigation, Fertilization, PestControl, Product, ProductRequest
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
@@ -11,6 +11,8 @@ from .forms import IrrigationForm, FertilizationForm, PestControlForm
 from django import forms
 from django.urls import reverse_lazy
 from .forms import ProductRequestForm
+from .models import ProductRequest
+
 
 @login_required
 def product_create(request):
@@ -116,18 +118,7 @@ def store(request):
     products = Product.objects.all()
     return render(request, 'store/store.html', {'products': products})
 
-def product_request(request, product_id):
-    product = Product.objects.get(id=product_id)
-    
-    if request.method == 'POST':
-        quantity = request.POST.get('quantity')
-        farmer_name = request.POST.get('farmer_name')
-        status = request.POST.get('status')
-        product_request = ProductRequest(farmer_name=farmer_name, product=product, quantity_requested=quantity, status=status)
-        product_request.save()
-        return redirect('store') 
-    
-    return render(request, 'store/product_request.html', {'product': product})
+
 
 def product_detail(request, id):
     product = Product.objects.get(id=id)  
@@ -159,9 +150,60 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'description', 'price', 'quantity', 'category', 'image_url']
 
+def product_request_detail(request, product_request_id):
+    product_request = get_object_or_404(ProductRequest, id=product_request_id)    
+    return render(request, 'store/request/product_request_detail.html', {'product_request': product_request})
+
+class ProductRequestUpdateView(UpdateView):
+    model = ProductRequest
+    fields = ['farmer_name','product', 'quantity_requested', 'status']
+    template_name = 'store/request/product_request_form.html'
+
+    def get_object(self, queryset=None):
+        return ProductRequest.objects.get(id=self.kwargs['product_request_id'])
+
+    def get_success_url(self):
+        return reverse_lazy('store')
+
+class ProductRequestDeleteView(DeleteView):
+    model = ProductRequest
+    template_name = 'store/request/product_request_confirm_delete.html'
+    
+    def get_object(self, queryset=None):
+        return ProductRequest.objects.get(id=self.kwargs['product_request_id'])
+
+    def get_success_url(self):
+        return reverse_lazy('store')  
+     
+class ProductRequestForm(forms.ModelForm):
+    class Meta:
+        model = ProductRequest
+        fields = ['farmer_name', 'product', 'quantity_requested', 'status']
 
 
+def product_request(request, product_id):
+    product = Product.objects.get(id=product_id)
+    product_requests = ProductRequest.objects.filter(product=product)
 
+    if request.method == 'POST':
+        quantity = request.POST.get('quantity')
+        farmer_name = request.POST.get('farmer_name')
+        status = request.POST.get('status')
+
+        product_request = ProductRequest(
+            farmer_name=farmer_name,
+            product=product,
+            quantity_requested=quantity,
+            status=status
+        )
+        product_request.save()
+        return redirect('store')  
+
+    return render(request, 'store/product_request.html', {
+        'product': product,
+        'product_requests': product_requests  
+    })
+    
 
 
 

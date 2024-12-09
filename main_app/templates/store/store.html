@@ -7,11 +7,7 @@
             <img src="{{ product.image_url }}" alt="{{ product.name }}">
             <h3>{{ product.name }}</h3>
             <a href="{% url 'product-detail' product.id %}">View Details</a>
-            {% if product.quantity > 0 %}
-                <a href="{% url 'product-request' product.id %}">Request</a>
-            {% else %}
-                <p>Out of Stock</p>
-            {% endif %}
+            <a href="{% url 'product-request' product.id %}">Request</a>
         </div>
     {% endfor %}
 </div>

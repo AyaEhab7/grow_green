@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Product Request Details</h1>
+  <p><strong>Farmer Name:</strong> {{ product_request.farmer_name }}</p>
+  <p><strong>Product:</strong> {{ product_request.product.name }}</p>
+  <p><strong>Quantity Requested:</strong> {{ product_request.quantity_requested }}</p>
+  <p><strong>Status:</strong> {{ product_request.status }}</p>
+  {% endblock %}

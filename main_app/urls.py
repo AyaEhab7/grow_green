@@ -16,7 +16,12 @@ urlpatterns = [
     path('store/product/<int:pk>/edit/', views.ProductUpdateView.as_view(), name='product-edit'),
     path('store/product/<int:pk>/delete/', views.ProductDeleteView.as_view(), name='product-delete'),
     path('product/<int:id>/detail/', views.product_detail, name='product-detail'),
-    path('request_product/<int:product_id>/', views.product_request, name='product-request'),
-
+   
+  #request 
+    path('store/product/request/<int:product_id>/', views.product_request, name='product-request'),
+    path('store/product/request/<int:product_request_id>/detail/', views.product_request_detail, name='product-request-detail'),
+    path('store/product/request/<int:product_request_id>/edit/', views.ProductRequestUpdateView.as_view(), name='product-request-edit'),
+    path('store/product/request/<int:product_request_id>/delete/', views.ProductRequestDeleteView.as_view(), name='product-request-delete'),
 
 ]
+

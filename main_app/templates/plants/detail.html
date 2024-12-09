@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="plant-detail">
+    <h2>Plant Details</h2>
+
+    <!-- Plant details display -->
+    <div class="plant-info">
+      <h3>{{ plant.name }}</h3>
+      <p><strong>Type:</strong> {{ plant.type }}</p>
+      <p><strong>Description:</strong> {{ plant.description }}</p>
+      <p><strong>Added on:</strong> {{ plant.created_at }}</p>
+    </div>
+    <a href="{% url 'plant-update' plant.id %}" class="btn warn">Edit</a>
+    <a href="{% url 'plant-delete' plant.id %}" class="btn danger">Delete</a>
+    <!-- Forms to add irrigation, fertilization, and pest control -->
+    <div class="forms">
+      <h3>Add Nursery Care Information</h3>
+
+      <form action = "{% url 'add_nursery_care' plant.id %} " method="POST">
+        {% csrf_token %}
+        
+        <!-- Irrigation form -->
+        <h4>Irrigation</h4>
+        <div>
+          {{ irrigation_form.as_p }}
+        </div>
+
+        <!-- Fertilization form -->
+        <h4>Fertilization</h4>
+        <div>
+          {{ fertilization_form.as_p }}
+        </div>
+
+        <!-- Pest Control form -->
+        <h4>Pest Control</h4>
+        <div>
+          {{ pest_form.as_p }}
+        </div>
+
+        <!-- Submit button -->
+        {% csrf_token %} {{ add_nursery_care.as_p }}
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+
+    <!-- Display the updates related to irrigation, fertilization, and pest control -->
+    <div class="updates">
+      <h3>Recent Updates</h3>
+        
+      <!-- Irrigation updates -->
+      <h4>Irrigation Updates</h4>
+      <ul>
+        {% for irrigation in plant.irrigation_set.all %}
+          <li>{{ irrigation.get_irrStatus_display }} on {{ irrigation.date }}</li>
+        {% empty %}
+          <li>No irrigation updates yet.</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Fertilization updates -->
+      <h4>Fertilization Updates</h4>
+      <ul>
+        {% for fertilization in plant.fertilization_set.all %}
+          <li>{{ fertilization.get_ferStatus_display }} on {{ fertilization.date }}</li>
+        {% empty %}
+          <li>No fertilization updates yet.</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Pest Control updates -->
+      <h4>Pest Control Updates</h4>
+      <ul>
+        {% for pest in plant.pestcontrol_set.all %}
+          <li>{{ pest.get_pestStatus_display }} on {{ pest.date }}</li>
+        {% empty %}
+          <li>No pest control updates yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

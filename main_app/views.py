@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import IrrigationForm, FertilizationForm, PestControlForm
 #from django.http import HttpResponse
-
+from django import forms
 from .forms import ProductRequestForm
 
 @login_required

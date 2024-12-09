@@ -14,6 +14,7 @@
             {% else %}
                 <p>Out of Stock</p>
             {% endif %}
+            <a href="{% url 'product-detail' product.id %}">View Details</a>
         </div>
     {% endfor %}
 </div>

@@ -121,9 +121,9 @@ def product_request(request, product_id):
     
     if request.method == 'POST':
         quantity = request.POST.get('quantity')
-        product_request = ProductRequest(farmer_name='', 
-                                         product=product,
-                                         quantity_requested=quantity)
+        farmer_name = request.POST.get('farmer_name')
+        status = request.POST.get('status')
+        product_request = ProductRequest(farmer_name=farmer_name, product=product, quantity_requested=quantity, status=status)
         product_request.save()
         return redirect('store') 
     

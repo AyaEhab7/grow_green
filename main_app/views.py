@@ -3,6 +3,7 @@ from .models import Nurseries , Plants
 from .models import Product, ProductRequest
 from .forms import ProductRequestForm
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
       
 def home(request):
     return render(request, 'home.html')
@@ -35,3 +36,7 @@ def product_request(request, product_id):
         return redirect('store') 
     
     return render(request, 'store/product_request.html', {'product': product})
+
+def product_detail(request, id):
+    product = Product.objects.get(id=id)  
+    return render(request, 'store/product_detail.html', {'product': product})

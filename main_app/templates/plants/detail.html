@@ -9,7 +9,7 @@
       <h3>{{ plant.name }}</h3>
       <p><strong>Type:</strong> {{ plant.type }}</p>
       <p><strong>Description:</strong> {{ plant.description }}</p>
-      <p><strong>Added on:</strong> {{ plant.created_at }}</p>
+      <p><strong>Planting day:</strong> {{ plant.date }}</p>
     </div>
     <a href="{% url 'plant-update' plant.id %}" class="btn warn">Edit</a>
     <a href="{% url 'plant-delete' plant.id %}" class="btn danger">Delete</a>

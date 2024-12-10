@@ -20,11 +20,23 @@
       </div>
       <nav>
         <ul>
+          {% if user.is_authenticated %}
           <li><a href="{% url 'nurseries-index' %}">All Nurseries</a></li>
           <li><a href="{% url 'store' %}">Store</a></li>
           <li><a href="{% url 'product_create' %}">Add Product</a></li>
           <li><a href="{% url 'plant-create' %}">Add Plant</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log out</button>
+            </form>
+          </li>
+          {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'home' %}">Sign in</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>

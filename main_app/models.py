@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 NURSERIES = (
     ('Tree Nurseries', 'Tree Nurseries'),
@@ -64,6 +65,7 @@ class Plants(models.Model):
     image_url = models.TextField(max_length=500)
 
     nurseries = models.ForeignKey(Nurseries, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -123,6 +125,7 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField() 
     category = models.CharField(max_length=50, choices=PRODUCT_CATEGORIES)
     image_url = models.TextField(max_length=500)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

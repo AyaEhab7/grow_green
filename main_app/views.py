@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404, redirect
-from .models import Nurseries , Plants, Irrigation, Fertilization, PestControl, Product, ProductRequest , Status
+from .models import Nurseries , Plants, Product, ProductRequest
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm 
@@ -18,8 +18,8 @@ def product_create(request):
     if not request.user.is_superuser: 
         return redirect('store')
       
-def home(request):
-    return render(request, 'home.html')
+class Home(LoginView):
+    template_name = 'home.html'
 
 
 def signup(request):
@@ -29,7 +29,7 @@ def signup(request):
         if form.is_valid():          
             user = form.save()
             login(request, user)
-            return redirect('cat-index')
+            return redirect('nurseries-index')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -44,10 +44,12 @@ def nurseries_index(request):
     nurseries = Nurseries.objects.all()
     return render(request, 'nurseries/index.html', {'nurseries': nurseries})
 
+@login_required
 def plant_list(request, nurserie_id):
     plants = Plants.objects.all().filter(nurseries=nurserie_id)
     return render(request, 'nurseries/plantlist.html', {'plants': plants})
 
+@login_required
 def plant_detail(request, plant_id):
     plant = Plants.objects.get(id=plant_id)
     irrigation_form = IrrigationForm()
@@ -61,7 +63,8 @@ def plant_detail(request, plant_id):
         'pest_form' : pest_form,
         'status_form' : status_form 
     }) 
-    
+
+@login_required
 def add_nursery_care(request, plant_id):
     # plant = Plants.objects.all().filter(plant=plant_id)
     plant = Plants.objects.get(id=plant_id)
@@ -107,39 +110,40 @@ class PlantCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)  
     
-class PlantUpdate(UpdateView):
+class PlantUpdate(LoginRequiredMixin, UpdateView):
     model = Plants
     fields = ['name', 'type', 'description', 'date', 'image_url']
     success_url = '/nurseries/{nurseries_id}'
     
-class PlantDelete(DeleteView):
+class PlantDelete(LoginRequiredMixin, DeleteView):
     model = Plants
     success_url = '/nurseries/{nurseries_id}'
 
+@login_required
 def store(request):
     products = Product.objects.all()
     return render(request, 'store/store.html', {'products': products})
 
 
-
+@login_required
 def product_detail(request, id):
     product = Product.objects.get(id=id)  
     return render(request, 'store/product_detail.html', {'product': product})
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     fields = ['name', 'description', 'price', 'quantity', 'category', 'image_url']
     template_name = 'store/product_form.html'
     success_url = '/store'
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     fields = ['name', 'description', 'price', 'quantity', 'category', 'image_url']
     template_name = 'store/product_form.html'
     success_url = '/store' 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = 'store/product_confirm_delete.html'
     success_url = '/store'
@@ -147,6 +151,7 @@ class ProductDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('store') 
 
+@login_required
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -156,7 +161,7 @@ def product_request_detail(request, product_request_id):
     product_request = get_object_or_404(ProductRequest, id=product_request_id)    
     return render(request, 'store/request/product_request_detail.html', {'product_request': product_request})
 
-class ProductRequestUpdateView(UpdateView):
+class ProductRequestUpdateView(LoginRequiredMixin, UpdateView):
     model = ProductRequest
     fields = ['farmer_name','product', 'quantity_requested']
     template_name = 'store/request/product_request_form.html'
@@ -167,7 +172,7 @@ class ProductRequestUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('store')
 
-class ProductRequestDeleteView(DeleteView):
+class ProductRequestDeleteView(LoginRequiredMixin, DeleteView):
     model = ProductRequest
     template_name = 'store/request/product_request_confirm_delete.html'
     
@@ -206,6 +211,7 @@ def product_request(request, product_id):
         'product_requests': product_requests  
     })
 
+@login_required
 def add_status(request, plant_id):
     plant = Plants.objects.get(id=plant_id)
     status_form = StatusForm(request.POST)

@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import IrrigationForm, FertilizationForm, PestControlForm , StatusForm
+from .forms import IrrigationForm, FertilizationForm, PestControlForm , StatusForm , PlantForm
 #from django.http import HttpResponse
 from django import forms
 from django.urls import reverse_lazy
@@ -229,6 +229,24 @@ def add_status(request, plant_id):
         'plant': plant,
         'status_form': status_form
     })
+
+@login_required
+def add_plant(request):
+    
+    if request.method == 'POST':
+        plant_form = PlantForm(request.POST)
+        if plant_form.is_valid():
+            new_plant = plant_form.save(commit=False)
+            new_plant.user_id = request.user.id
+            new_plant.save()
+
+            return redirect('nurseries-index')
+        
+    plant_form = PlantForm()
+    return render(request, 'main_app/plants_form.html', {
+        'plant_form': plant_form
+    })
+        
 
 
 

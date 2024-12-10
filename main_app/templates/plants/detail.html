@@ -11,7 +11,7 @@
       <p><strong>Description:</strong> {{ plant.description }}</p>
       <p><strong>Planting day:</strong> {{ plant.date }}</p>
     </div>
-    <a href="{% url 'plant-update' plant.id %}" class="btn warn">Edit</a>
+    <a href="{% url 'edit_plant' plant.id %}" class="btn warn">Edit</a>
     <a href="{% url 'plant-delete' plant.id %}" class="btn danger">Delete</a>
     <!-- Forms to add irrigation, fertilization, and pest control -->
     <div class="forms">

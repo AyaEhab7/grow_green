@@ -100,20 +100,6 @@ def add_nursery_care(request, plant_id):
         'fertilization_form': fertilization_form,
         'pest_form': pest_control_form
     })
-
-class PlantCreate(LoginRequiredMixin, CreateView):
-    model = Plants
-    fields = '__all__'
-    success_url = '/nurseries/{nurseries_id}'
-    
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)  
-    
-class PlantUpdate(LoginRequiredMixin, UpdateView):
-    model = Plants
-    fields = ['name', 'type', 'description', 'date', 'image_url']
-    success_url = '/nurseries/{nurseries_id}'
     
 class PlantDelete(LoginRequiredMixin, DeleteView):
     model = Plants
@@ -247,6 +233,24 @@ def add_plant(request):
         'plant_form': plant_form
     })
         
+@login_required
+def edit_plant(request, pk):
+    plant = get_object_or_404(Plants, pk=pk)
 
+    if plant.user_id != request.user.id:
+        return redirect('nurseries-index') 
+
+    if request.method == 'POST':
+        form = PlantForm(request.POST, instance=plant)
+        if form.is_valid():
+            form.save()  
+            return redirect('nurseries-index')  
+    else:
+        form = PlantForm(instance=plant)
+
+    return render(request, 'main_app/plants_form.html', {
+        'form': form,
+        'object': plant,  
+    })
 
 

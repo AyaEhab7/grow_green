@@ -92,7 +92,9 @@
       <h3>Status update</h3>
       <ul>
         {% for status in plant.status_set.all %}
-        <li>{{status.get_plant_status_display}} on {{status.date}}</li>
+        <li>
+          <p>{{status.get_plant_status_display}} on {{status.date}}</p>
+          <p><strong>Note:</strong> {{status.note}}</p></li>
         {% empty %}
         <li>No status updates yet.</li>
         {% endfor %}

@@ -12,12 +12,14 @@ from django import forms
 from django.urls import reverse_lazy
 from .forms import ProductRequestForm
 from .models import ProductRequest
+#from .decorators import role_required
 
 @login_required
 def product_create(request):
     if not request.user.is_superuser: 
         return redirect('store')
       
+#@role_required(['ADMIN'])
 class Home(LoginView):
     template_name = 'home.html'
 

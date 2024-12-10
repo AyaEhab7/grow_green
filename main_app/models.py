@@ -1,6 +1,18 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+#from django.contrib.auth.models import AbstractUser
+
+"""
+class CustomUser(AbstractUser):
+    USER = 'USER'
+    ADMIN = 'ADMIN'
+    ROLE_CHOICES = [
+        (USER, 'User'),
+        (ADMIN, 'Admin'),
+    ]
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default=USER)
+    """
 
 NURSERIES = (
     ('Tree Nurseries', 'Tree Nurseries'),

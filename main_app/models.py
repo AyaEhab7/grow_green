@@ -82,6 +82,7 @@ class Plants(models.Model):
     def __str__(self):
         return self.name
     
+    
 class Irrigation(models.Model):
      date = models.DateTimeField("Irrigation Time")
      irrStatus = models.CharField(
@@ -170,7 +171,7 @@ class Status(models.Model):
     plants = models.ForeignKey(Plants, on_delete=models.CASCADE)   
 
     def __str__(self):
-        return f"{self.get_plant_status_display()} on {self.date}"
+        return f"{self.get_status_display()} on {self.date}"
 
     def get_absolute_url(self):
         return reverse('status-detail', kwargs={'pk': self.id})

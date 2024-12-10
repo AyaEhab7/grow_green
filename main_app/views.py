@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import IrrigationForm, FertilizationForm, PestControlForm , StatusForm
+from .forms import IrrigationForm, FertilizationForm, PestControlForm , StatusForm , PlantForm
 #from django.http import HttpResponse
 from django import forms
 from django.urls import reverse_lazy
@@ -102,20 +102,6 @@ def add_nursery_care(request, plant_id):
         'fertilization_form': fertilization_form,
         'pest_form': pest_control_form
     })
-
-class PlantCreate(LoginRequiredMixin, CreateView):
-    model = Plants
-    fields = '__all__'
-    success_url = '/nurseries/{nurseries_id}'
-    
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)  
-    
-class PlantUpdate(LoginRequiredMixin, UpdateView):
-    model = Plants
-    fields = ['name', 'type', 'description', 'date', 'image_url']
-    success_url = '/nurseries/{nurseries_id}'
     
 class PlantDelete(LoginRequiredMixin, DeleteView):
     model = Plants
@@ -232,5 +218,41 @@ def add_status(request, plant_id):
         'status_form': status_form
     })
 
+@login_required
+def add_plant(request):
+    
+    if request.method == 'POST':
+        plant_form = PlantForm(request.POST)
+        if plant_form.is_valid():
+            new_plant = plant_form.save(commit=False)
+            new_plant.user_id = request.user.id
+            new_plant.save()
+
+            return redirect('nurseries-index')
+        
+    plant_form = PlantForm()
+    return render(request, 'main_app/plants_form.html', {
+        'plant_form': plant_form
+    })
+        
+@login_required
+def edit_plant(request, pk):
+    plant = get_object_or_404(Plants, pk=pk)
+
+    if plant.user_id != request.user.id:
+        return redirect('nurseries-index') 
+
+    if request.method == 'POST':
+        form = PlantForm(request.POST, instance=plant)
+        if form.is_valid():
+            form.save()  
+            return redirect('nurseries-index')  
+    else:
+        form = PlantForm(instance=plant)
+
+    return render(request, 'main_app/plants_form.html', {
+        'form': form,
+        'object': plant,  
+    })
 
 

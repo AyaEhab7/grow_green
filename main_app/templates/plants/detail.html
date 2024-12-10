@@ -78,5 +78,25 @@
         {% endfor %}
       </ul>
     </div>
+
+    <form action="{% url 'add_status' plant.id %}" method="POST">
+      {% csrf_token %}
+      <h4>Status</h4>
+      <div>
+          {{ status_form.as_p }}
+      </div>
+      <button type="submit">Save Status</button>
+  </form>
+
+    <div class="updates">
+      <h3>Status update</h3>
+      <ul>
+        {% for status in plant.status_set.all %}
+        <li>{{status.get_plant_status_display}} on {{status.date}}</li>
+        {% empty %}
+        <li>No status updates yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 {% endblock %}

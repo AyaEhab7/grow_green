@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 NURSERIES = (
     ('Tree Nurseries', 'Tree Nurseries'),
@@ -36,6 +37,19 @@ PEST_CONTROL = (
     ('Recurring Pest Issue', 'Recurring Pest Issue'),
     ('Unknown Pest Type', 'Unknown Pest Type')
 )
+
+STATUS = (
+    ('Healthy','Healthy' ),
+    ('Caution', 'Caution'),
+    ('Requires Immediate Care', 'Requires Immediate Care'),
+)
+
+COLOR = (
+    ('green','green'),
+    ('yellow', 'yellow'),
+    ('red', 'red'),
+)
+
 class Nurseries(models.Model):
     category = models.CharField(max_length=50, choices= NURSERIES )
     file = models.TextField(max_length=1000)
@@ -122,3 +136,26 @@ class ProductRequest(models.Model):
 
     def __str__(self):
         return f"{self.farmer_name} - {self.product.name}"
+    
+class Status(models.Model):
+    date = models.DateTimeField('Status record day')
+    note = models.TextField(max_length=1000)
+    color = models.CharField(
+        max_length=20,
+        choices=COLOR,
+        default=COLOR[0][0],
+        )
+    
+    plant_status = models.CharField(
+        max_length=50,
+        choices=STATUS,
+        default=STATUS[0][0]
+        )
+    
+    plants = models.ForeignKey(Plants, on_delete=models.CASCADE)   
+
+    def __str__(self):
+        return f"{self.get_plant_status_display()} on {self.date}"
+
+    def get_absolute_url(self):
+        return reverse('status-detail', kwargs={'pk': self.id})

@@ -1,18 +1,17 @@
 from django.shortcuts import render,get_object_or_404, redirect
-from .models import Nurseries , Plants, Irrigation, Fertilization, PestControl, Product, ProductRequest
+from .models import Nurseries , Plants, Irrigation, Fertilization, PestControl, Product, ProductRequest , Status
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import IrrigationForm, FertilizationForm, PestControlForm
+from .forms import IrrigationForm, FertilizationForm, PestControlForm , StatusForm
 #from django.http import HttpResponse
 from django import forms
 from django.urls import reverse_lazy
 from .forms import ProductRequestForm
 from .models import ProductRequest
-
 
 @login_required
 def product_create(request):
@@ -54,11 +53,13 @@ def plant_detail(request, plant_id):
     irrigation_form = IrrigationForm()
     fertilization_form = FertilizationForm()
     pest_form = PestControlForm()
+    status_form = StatusForm()
     return render(request , 'plants/detail.html', {
         'plant' : plant,
         'irrigation_form': irrigation_form,
         'fertilization_form': fertilization_form,
-        'pest_form' : pest_form   
+        'pest_form' : pest_form,
+        'status_form' : status_form 
     }) 
     
 def add_nursery_care(request, plant_id):
@@ -96,6 +97,7 @@ def add_nursery_care(request, plant_id):
         'fertilization_form': fertilization_form,
         'pest_form': pest_control_form
     })
+
 class PlantCreate(LoginRequiredMixin, CreateView):
     model = Plants
     fields = '__all__'
@@ -203,7 +205,24 @@ def product_request(request, product_id):
         'product': product,
         'product_requests': product_requests  
     })
+
+def add_status(request, plant_id):
+    plant = Plants.objects.get(id=plant_id)
+    status_form = StatusForm(request.POST)
     
+    
+    if request.method == 'POST':
+        if status_form.is_valid():
+            new_status = status_form.save(commit=False)
+            new_status.plants_id = plant_id
+            new_status.save()
+
+            return redirect('plant_detail', plant_id=plant_id)
+        
+        return render(request, 'plants/detail.html', {
+        'plant': plant,
+        'status_form': status_form
+    })
 
 
 

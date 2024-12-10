@@ -1,5 +1,5 @@
 from django import forms
-from .models import Irrigation, Fertilization, PestControl
+from .models import Irrigation, Fertilization, PestControl , Status
 from .models import ProductRequest, Product
 
 class IrrigationForm(forms.ModelForm):
@@ -47,61 +47,20 @@ class PestControlForm(forms.ModelForm):
             )
         }          
         
-"""class CombinedPlantForm(forms.Form):
-    # Fields for Irrigation
-    irrigation_date = forms.DateTimeField(
-        widget=forms.DateTimeInput(
-            format='%Y-%m-%d %H:%M',
-            attrs={
-                'placeholder': 'Select a date & time',
-                'type': 'datetime-local',
-            }
-        ),
-        label="Irrigation Date",
-        required=True,
-    )
-    irrigation_status = forms.ChoiceField(
-        choices= Irrigation,
-        label="Irrigation Status",
-        required=True,
-    )
-    
-    # Fields for Fertilization
-    fertilization_date = forms.DateTimeField(
-        widget=forms.DateTimeInput(
-            format='%Y-%m-%d %H:%M',
-            attrs={
-                'placeholder': 'Select a date & time',
-                'type': 'datetime-local',
-            }
-        ),
-        label="Fertilization Date",
-        required=True,
-    )
-    fertilization_status = forms.ChoiceField(
-        choices=Fertilization,
-        label="Fertilization Status",
-        required=True,
-    )
-    
-    # Fields for Pest Control
-    pest_date = forms.DateTimeField(
-        widget=forms.DateTimeInput(
-            format='%Y-%m-%d %H:%M',
-            attrs={
-                'placeholder': 'Select a date & time',
-                'type': 'datetime-local',
-            }
-        ),
-        label="Pest Control Date",
-        required=True,
-    )
-    pest_status = forms.ChoiceField(
-        choices=PestControl,
-        label="Pest Control Status",
-        required=True,
-    )        """
-
+class StatusForm(forms.ModelForm):
+    class Meta:
+        model = Status
+        fields = ['date', 'note', 'color', 'plant_status']
+        widgets = {
+            'date': forms.DateTimeInput(
+                format = ('%Y-%m-%d %H:%M'),
+                attrs={
+                    'placeholder': 'Select a date & time',
+                    'type': 'datetime-local'
+                }   
+            )
+        }
+        
 
 class ProductRequestForm(forms.ModelForm):
     class Meta:

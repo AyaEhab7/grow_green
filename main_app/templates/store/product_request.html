@@ -13,8 +13,6 @@
     <label for="status">Status:</label>
     <select name="status" required>
       <option value="pending">Pending</option>
-      <option value="approved">Approved</option>
-      <option value="rejected">Rejected</option>
     </select><br>
 
     <button type="submit">Submit Request</button>
@@ -38,7 +36,6 @@
             <td>{{ request.quantity_requested }}</td>
             <td>{{ request.status }}</td>
             <td>
-              <a href="{% url 'product-request-detail' request.id %}">View</a> 
               <a href="{% url 'product-request-edit' request.id %}">Edit</a> 
               <a href="{% url 'product-request-delete' request.id %}">Delete</a>
             </td>

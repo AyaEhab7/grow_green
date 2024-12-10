@@ -158,7 +158,7 @@ def product_request_detail(request, product_request_id):
 
 class ProductRequestUpdateView(UpdateView):
     model = ProductRequest
-    fields = ['farmer_name','product', 'quantity_requested', 'status']
+    fields = ['farmer_name','product', 'quantity_requested']
     template_name = 'store/request/product_request_form.html'
 
     def get_object(self, queryset=None):
@@ -180,7 +180,7 @@ class ProductRequestDeleteView(DeleteView):
 class ProductRequestForm(forms.ModelForm):
     class Meta:
         model = ProductRequest
-        fields = ['farmer_name', 'product', 'quantity_requested', 'status']
+        fields = ['farmer_name', 'product', 'quantity_requested']
 
 
 def product_request(request, product_id):

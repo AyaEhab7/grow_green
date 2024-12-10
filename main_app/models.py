@@ -3,16 +3,18 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 #from django.contrib.auth.models import AbstractUser
 
-"""
-class CustomUser(AbstractUser):
-    USER = 'USER'
-    ADMIN = 'ADMIN'
+class UserProfile(models.Model):
     ROLE_CHOICES = [
-        (USER, 'User'),
-        (ADMIN, 'Admin'),
+        ('admin', 'Admin'),
+        ('farmer', 'Farmer'),
+        ('storeController', 'StoreController'),
     ]
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default=USER)
-    """
+ 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='farmer')
+ 
+    def __str__(self):
+        return f"{self.user.username} - {self.role}"
 
 NURSERIES = (
     ('Tree Nurseries', 'Tree Nurseries'),

@@ -12,6 +12,9 @@ from django import forms
 from django.urls import reverse_lazy
 from .forms import ProductRequestForm
 from .models import ProductRequest
+from .decorators import admin_required
+from .models import UserProfile
+
 #from .decorators import role_required
 
 @login_required
@@ -58,8 +61,10 @@ def plant_detail(request, plant_id):
     fertilization_form = FertilizationForm()
     pest_form = PestControlForm()
     status_form = StatusForm()
+    user_profile = UserProfile.objects.get(user=request.user)
     return render(request , 'plants/detail.html', {
         'plant' : plant,
+        'role': user_profile.role,
         'irrigation_form': irrigation_form,
         'fertilization_form': fertilization_form,
         'pest_form' : pest_form,
@@ -204,18 +209,18 @@ def add_status(request, plant_id):
     plant = Plants.objects.get(id=plant_id)
     status_form = StatusForm(request.POST)
     
-    
     if request.method == 'POST':
         if status_form.is_valid():
             new_status = status_form.save(commit=False)
             new_status.plants_id = plant_id
             new_status.save()
-
+            user_profile = UserProfile.objects.get(user=request.user)
             return redirect('plant_detail', plant_id=plant_id)
         
         return render(request, 'plants/detail.html', {
         'plant': plant,
-        'status_form': status_form
+        'status_form': status_form,
+        'role': user_profile.role
     })
 
 @login_required

@@ -1,54 +1,68 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %} 
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/product_request.css' %}"/>
+{% endblock %} 
 {% block content %}
-  <h1>Request Product: {{ product.name }}</h1>
+
+  <div class="request-product-container">
+    <h1 class="request-product-header">Request Product: {{ product.name }}</h1>
   {% if role == "farmer"%}
-  <form method="POST">
-    {% csrf_token %}
-    <label for="farmer_name">Farmer Name:</label>
-    <input type="text" name="farmer_name" required><br>
 
-    <label for="quantity">Quantity Requested:</label>
-    <input type="number" name="quantity" required><br>
+    <form method="POST" class="product-request-form">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="farmer_name">Farmer Name:</label>
+        <input type="text" name="farmer_name" id="farmer_name" required class="form-input">
+      </div>
 
-    <label for="status">Status:</label>
-    <select name="status" required>
-      <option value="pending">Pending</option>
-    </select><br>
+      <div class="form-group">
+        <label for="quantity">Quantity Requested:</label>
+        <input type="number" name="quantity" id="quantity" required class="form-input">
+      </div>
 
-    <button type="submit">Submit Request</button>
-  </form>
-  {% endif %}
-  
-  {% if product_requests %}
-    <table>
-      <thead>
-        <tr>
-          <th>Farmer Name</th>
-          <th>Quantity Requested</th>
-          <th>Status</th>
-          {% if role == "storeController"%}
-          <th>Actions</th>
-          {% endif %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for request in product_requests %}
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select name="status" id="status" required class="form-input">
+          <option value="pending">Pending</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-submit">Submit Request</button>
+    </form>
+    {% endif %}
+    <h2 class="request-list-header">Product Requests</h2>
+    {% if product_requests %}
+      <table class="request-table">
+        <thead>
           <tr>
-            <td>{{ request.farmer_name }}</td>
-            <td>{{ request.quantity_requested }}</td>
-            <td>{{ request.status }}</td>
-            {% if role == "farmer"%}
-            <td>
-              <a href="{% url 'product-request-edit' request.id %}">Edit</a> 
-              <a href="{% url 'product-request-delete' request.id %}">Delete</a>
-            </td>
-            {% endif %}
+            <th>Farmer Name</th>
+            <th>Quantity Requested</th>
+            <th>Status</th>
+            {% if role == "storeController"%}
+            <th>Actions</th>
+            {% endif %}        
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>No requests yet for this product.</p>
-  {% endif %}
+        </thead>
+        <tbody>
+          {% for request in product_requests %}
+            <tr>
+              <td>{{ request.farmer_name }}</td>
+              <td>{{ request.quantity_requested }}</td>
+              <td>{{ request.status }}</td>
+              {% if role == "farmer"%}
+              <td>
+                <a href="{% url 'product-request-edit' request.id %}" class="btn btn-edit">Edit</a>
+                <a href="{% url 'product-request-delete' request.id %}" class="btn btn-delete">Delete</a>
+              </td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No requests yet for this product.</p>
+    {% endif %}
+  </div>
 {% endblock %}

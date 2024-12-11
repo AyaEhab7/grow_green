@@ -140,6 +140,10 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     fields = ['name', 'description', 'price', 'quantity', 'category', 'image_url']
     template_name = 'store/product_form.html'
     success_url = '/store'
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Automatically set the user to the current logged-in user
+        return super().form_valid(form)
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product

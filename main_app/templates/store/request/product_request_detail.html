@@ -1,9 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %} 
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/request/product_request_detail.css' %}"/>
+{% endblock %} 
 {% block content %}
-  <h1>Product Request Details</h1>
-  <p><strong>Farmer Name:</strong> {{ product_request.farmer_name }}</p>
-  <p><strong>Product:</strong> {{ product_request.product.name }}</p>
-  <p><strong>Quantity Requested:</strong> {{ product_request.quantity_requested }}</p>
-  <p><strong>Status:</strong> {{ product_request.status }}</p>
-  {% endblock %}
+  <div class="product-request-container">
+    <h1 class="product-request-header">Product Request Details</h1>
+    <div class="product-request-info">
+      <p><strong class="label">Farmer Name:</strong> <span class="value">{{ product_request.farmer_name }}</span></p>
+      <p><strong class="label">Product:</strong> <span class="value">{{ product_request.product.name }}</span></p>
+      <p><strong class="label">Quantity Requested:</strong> <span class="value">{{ product_request.quantity_requested }}</span></p>
+      <p><strong class="label">Status:</strong> <span class="value status">{{ product_request.status }}</span></p>
+    </div>
+  </div>
+{% endblock %}
+

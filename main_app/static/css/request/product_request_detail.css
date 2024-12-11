@@ -1,0 +1,114 @@
+
+.product-request-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-request-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Header */
+.product-request-header {
+    font-size: 2.5rem;
+    color: #1d4e89;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+/* Product Request Info */
+.product-request-info {
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.product-request-info p {
+    margin-bottom: 18px;
+}
+
+/* Label Styling */
+.product-request-info .label {
+    font-weight: 600;
+    color: #2d6a4f;
+}
+
+/* Value Styling */
+.product-request-info .value {
+    color: #555;
+    font-weight: 500;
+}
+
+/* Status Highlight */
+.product-request-info .status {
+    font-weight: 600;
+    color: #e67e22; /* Orange color for status */
+}
+
+/* Buttons (optional for future use) */
+.product-request-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.product-request-actions .btn {
+    padding: 15px 40px;
+    margin: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.product-request-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-request-actions .btn-edit {
+    background-color: #f39c12;
+    color: white;
+}
+
+.product-request-actions .btn-edit:hover {
+    background-color: #e67e22;
+}
+
+.product-request-actions .btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.product-request-actions .btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-request-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .product-request-header {
+        font-size: 2rem;
+    }
+
+    .product-request-info p {
+        font-size: 1rem;
+    }
+}

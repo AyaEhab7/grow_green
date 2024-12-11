@@ -1,14 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %} 
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/request/product_request_form.css' %}"/>
+{% endblock %} 
 {% block content %}
 
-  <h1>Edit Product Request</h1>
+  <div class="edit-product-request-container">
+    <h1 class="edit-product-request-header">Edit Product Request</h1>
 
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}  <!-- Render the form fields -->
+    <form method="POST" class="edit-product-request-form">
+      {% csrf_token %}
+      <div class="form-fields">
+        {{ form.as_p }}  <!-- Render the form fields -->
+      </div>
 
-    <button type="submit">Save Changes</button>
-  </form>
- 
+      <button type="submit" class="btn btn-submit">Save Changes</button>
+    </form>
+  </div>
 {% endblock %}
+

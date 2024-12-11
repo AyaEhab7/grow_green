@@ -1,0 +1,109 @@
+/* About Grow Green - Nature-Inspired Styling */
+.about-section {
+    max-width: 950px;
+    margin: 50px auto;
+    padding: 50px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before,
+.about-section::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 15s infinite ease-in-out;
+    z-index: 0;
+}
+
+.about-section::before {
+    top: -20%;
+    left: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(85, 139, 47, 0.2); /* Light green for soft emphasis */
+}
+
+.about-section::after {
+    bottom: -20%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: rgba(46, 125, 50, 0.2); /* Dark green for depth */
+}
+
+.about-header {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.about-title {
+    font-size: 3rem;
+    color: #2e7d32; /* Rich green tone */
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.about-title .highlight {
+    color: #558b2f; /* Olive green to complement */
+
+    font-weight: 900;
+}
+
+.about-divider {
+    width: 70px;
+    height: 5px;
+    background: #8bc34a; /* Lime green for vibrancy */
+    margin: 0 auto 30px auto;
+    border-radius: 3px;
+}
+
+.about-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+    z-index: 1;
+    position: relative;
+}
+
+.about-description .accent-text {
+    color: #558b2f; /* Consistent olive green */
+    font-weight: bold;
+}
+
+.highlight {
+    color: #8bc34a; /* Vibrant lime green */
+    font-weight: bold;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 30px;
+    }
+
+    .about-title {
+        font-size: 2.4rem;
+    }
+
+    .about-description {
+        font-size: 1.1rem;
+    }
+}

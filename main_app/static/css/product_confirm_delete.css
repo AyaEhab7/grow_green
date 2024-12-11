@@ -1,0 +1,79 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: #2d6a4f;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.confirmation-message {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    width: 200px;
+}
+
+.btn.secondary {
+    background-color: #ccc;
+    color: #333;
+}
+
+.btn.secondary:hover {
+    background-color: #aaa;
+    transform: translateY(-2px);
+}
+
+.btn.danger {
+    background-color: #d9534f;
+    color: white;
+}
+
+.btn.danger:hover {
+    background-color: #c9302c;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .confirmation-message {
+        font-size: 1.2rem;
+    }
+
+    .form {
+        width: 90%;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+}

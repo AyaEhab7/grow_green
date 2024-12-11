@@ -1,14 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/store.css' %}"/>
+{% endblock %} 
 {% block content %}
-<h1>Store</h1>
-<div class="products">
-    {% for product in products %}
+
+<div class="store-container">
+    <h1 class="store-header">Store</h1>
+    <div class="products">
+      {% for product in products %}
         <div class="product-card">
-            <img src="{{ product.image_url }}" alt="{{ product.name }}">
-            <h3>{{ product.name }}</h3>
-            <a href="{% url 'product-detail' product.id %}">View Details</a>
-            <a href="{% url 'product-request' product.id %}">Request</a>
+          <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <div class="product-actions">
+            <a href="{% url 'product-detail' product.id %}" class="btn btn-view">View Details</a>
+            <a href="{% url 'product-request' product.id %}" class="btn btn-request">Request</a>
+          </div>
         </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
 </div>
 {% endblock %}

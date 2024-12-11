@@ -23,8 +23,12 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'nurseries-index' %}">All Nurseries</a></li>
           <li><a href="{% url 'store' %}">Store</a></li>
+          {% if role == "storeController"%}
           <li><a href="{% url 'product_create' %}">Add Product</a></li>
+          {% endif %}
+          {% if role == "farmer"%}
           <li><a href="{% url 'add_plant' %}">Add Plant</a></li>
+          {% endif %}
           <li><a href="{% url 'about' %}">About</a></li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">

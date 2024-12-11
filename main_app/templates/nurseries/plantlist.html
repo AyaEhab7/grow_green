@@ -1,26 +1,25 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/nurseries/nurseries-index.css' %}"/>
-{% endblock %} 
+<link rel="stylesheet" href="{% static 'css/nurseries/nurseries-plantlist.css' %}" />
+{% endblock %}
 
 {% block content %}
 
-
-<section class="card-container">
+<section class="plant-card-container">
   {% for plant in plants %}
-    <div class="card">
-      <a href="/plants/{{plant.id }}">
-      <div class="card-content">
-        <div class="card-img-container">
+    <div class="plant-card">
+      <a href="/plants/{{ plant.id }}">
+      <div class="plant-card-content">
+        <div class="plant-card-img-container">
           <img
             src="{{ plant.image_url }}"
             alt="plant"
-            class="card-img"
+            class="plant-card-img"
           />
         </div>
-        <h2 class="card-title">{{ plant.name }}</h2>
+        <h2 class="plant-card-title">{{ plant.name }}</h2>
       </div>
     </a>
     </div>

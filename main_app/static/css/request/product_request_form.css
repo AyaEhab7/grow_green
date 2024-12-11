@@ -1,0 +1,90 @@
+/* General Layout */
+.edit-product-request-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Header */
+.edit-product-request-header {
+    font-size: 2.5rem;
+    color: #1d4e89;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}
+
+/* Form Styling */
+.edit-product-request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input Fields */
+.edit-product-request-form input,
+.edit-product-request-form select,
+.edit-product-request-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Button Styling */
+.btn-submit {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #2d6a4f;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    background-color: #1b4d3e;
+    transform: translateY(-2px);
+}
+
+.btn-submit:focus {
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .edit-product-request-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .edit-product-request-header {
+        font-size: 2rem;
+    }
+
+    .edit-product-request-form {
+        padding: 15px;
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+}

@@ -1,24 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 {% block content %}
 
-<section class="logo-container">
-  <div class="container">
-    <img src="" alt="The Grow Green" />
+  <div class="growgreen-container">
+    <section class="growgreen-logo-section">
+      <div class="growgreen-logo-container">
+        <img src="{% static 'images/logo.png' %}" alt="The Grow Green Logo" class="growgreen-logo" />
+      </div>
+      <img src="{% static 'images/grow-green-text.png' %}" alt="Grow Green Text" class="growgreen-logo-text" />
+    </section>
+  
+    <section class="growgreen-login-section">
+      <form action="{% url 'home' %}" method="post" class="growgreen-login-form">
+        <h1 class="growgreen-login-header">Welcome Back</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="growgreen-login-button">Login</button>
+      </form>
+    </section>
   </div>
-  <img src="" alt="Text reads: Grow Green" />
-</section>
-
-<section>
-  <form action="{% url 'home' %}" method="post" class="login">
-    <h1>Login</h1>
-    {% csrf_token %} {{ form.as_p }}
-    <input type="hidden" name="next" value="{{ next }}" />
-    <button type="submit" class="btn submit">Login</button>
-  </form>
-</section>
-
+  
 {% endblock %}

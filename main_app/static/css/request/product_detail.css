@@ -1,0 +1,119 @@
+
+.product-detail-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-detail-header {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-image img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Product Information */
+.product-info {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 20px;
+}
+
+.product-info p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.product-info strong {
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+/* Action Buttons */
+.actions {
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 14px 35px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Edit Button */
+.btn-edit {
+    background-color:  olive;
+    color: white;
+    border: 2px solid  olive;
+}
+
+.btn-edit:hover,
+.btn-edit:focus {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Delete Button */
+.btn-delete {
+    background-color: olive;
+    color: white;
+    border: 2px solid olive;
+}
+
+.btn-delete:hover,
+.btn-delete:focus {
+    background-color:  olive;
+    border-color:  olive;
+}
+
+/* Mobile & Tablet Responsive */
+@media (max-width: 768px) {
+    .product-detail-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .product-detail-header {
+        font-size: 2rem;
+    }
+
+    .product-info p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+        width: 100%;
+    }
+}

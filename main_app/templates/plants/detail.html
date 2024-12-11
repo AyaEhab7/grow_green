@@ -1,55 +1,59 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %} 
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/plants/plant-detail.css' %}"/>
+{% endblock %} 
 {% block content %}
-  <div class="plant-detail">
-    <h2>Plant Details</h2>
+  <div class="plant-detail-container">
+    <h2 class="plant-detail-header">Plant Details</h2>
 
     <!-- Plant details display -->
     <div class="plant-info">
-      <h3>{{ plant.name }}</h3>
+      <h3 class="plant-name">{{ plant.name }}</h3>
       <p><strong>Type:</strong> {{ plant.type }}</p>
       <p><strong>Description:</strong> {{ plant.description }}</p>
       <p><strong>Planting day:</strong> {{ plant.date }}</p>
     </div>
-    <a href="{% url 'edit_plant' plant.id %}" class="btn warn">Edit</a>
-    <a href="{% url 'plant-delete' plant.id %}" class="btn danger">Delete</a>
+    <a href="{% url 'edit_plant' plant.id %}" class="btn btn-warn">Edit</a>
+    <a href="{% url 'plant-delete' plant.id %}" class="btn btn-danger">Delete</a>
+
     <!-- Forms to add irrigation, fertilization, and pest control -->
     <div class="forms">
-      <h3>Add Nursery Care Information</h3>
+      <h3 class="forms-header">Add Nursery Care Information</h3>
 
-      <form action = "{% url 'add_nursery_care' plant.id %} " method="POST">
+      <form action="{% url 'add_nursery_care' plant.id %}" method="POST">
         {% csrf_token %}
         
         <!-- Irrigation form -->
-        <h4>Irrigation</h4>
+        <h4 class="form-section-title">Irrigation</h4>
         <div>
           {{ irrigation_form.as_p }}
         </div>
 
         <!-- Fertilization form -->
-        <h4>Fertilization</h4>
+        <h4 class="form-section-title">Fertilization</h4>
         <div>
           {{ fertilization_form.as_p }}
         </div>
 
         <!-- Pest Control form -->
-        <h4>Pest Control</h4>
+        <h4 class="form-section-title">Pest Control</h4>
         <div>
           {{ pest_form.as_p }}
         </div>
 
         <!-- Submit button -->
-        {% csrf_token %} {{ add_nursery_care.as_p }}
-        <button type="submit">Save Changes</button>
+        <button type="submit" class="btn btn-submit">Save Changes</button>
       </form>
     </div>
 
     <!-- Display the updates related to irrigation, fertilization, and pest control -->
     <div class="updates">
-      <h3>Recent Updates</h3>
+      <h3 class="updates-header">Recent Updates</h3>
         
       <!-- Irrigation updates -->
-      <h4>Irrigation Updates</h4>
+      <h4 class="updates-section-title">Irrigation Updates</h4>
       <ul>
         {% for irrigation in plant.irrigation_set.all %}
           <li>{{ irrigation.get_irrStatus_display }} on {{ irrigation.date }}</li>
@@ -59,7 +63,7 @@
       </ul>
 
       <!-- Fertilization updates -->
-      <h4>Fertilization Updates</h4>
+      <h4 class="updates-section-title">Fertilization Updates</h4>
       <ul>
         {% for fertilization in plant.fertilization_set.all %}
           <li>{{ fertilization.get_ferStatus_display }} on {{ fertilization.date }}</li>
@@ -69,7 +73,7 @@
       </ul>
 
       <!-- Pest Control updates -->
-      <h4>Pest Control Updates</h4>
+      <h4 class="updates-section-title">Pest Control Updates</h4>
       <ul>
         {% for pest in plant.pestcontrol_set.all %}
           <li>{{ pest.get_pestStatus_display }} on {{ pest.date }}</li>
@@ -79,24 +83,26 @@
       </ul>
     </div>
 
+    <!-- Status form -->
     <form action="{% url 'add_status' plant.id %}" method="POST">
       {% csrf_token %}
-      <h4>Status</h4>
+      <h4 class="status-title">Status</h4>
       <div>
           {{ status_form.as_p }}
       </div>
-      <button type="submit">Save Status</button>
-  </form>
+      <button type="submit" class="btn btn-submit">Save Status</button>
+    </form>
 
-    <div class="updates">
-      <h3>Status update</h3>
+    <div class="status-updates">
+      <h3 class="status-updates-header">Status Update</h3>
       <ul>
         {% for status in plant.status_set.all %}
-        <li>
-          <p>{{status.get_plant_status_display}} on {{status.date}}</p>
-          <p><strong>Note:</strong> {{status.note}}</p></li>
+          <li>
+            <p>{{ status.get_plant_status_display }} on {{ status.date }}</p>
+            <p><strong>Note:</strong> {{ status.note }}</p>
+          </li>
         {% empty %}
-        <li>No status updates yet.</li>
+          <li>No status updates yet.</li>
         {% endfor %}
       </ul>
     </div>

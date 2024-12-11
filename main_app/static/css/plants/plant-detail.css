@@ -1,0 +1,213 @@
+
+.plant-detail-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fafafa; 
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.plant-detail-header {
+    font-size: 2.5rem;
+    color: #2d6a4f;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Plant Information - Card */
+.plant-info {
+    background-color: #fff;
+    padding: 25px;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+}
+
+.plant-name {
+    font-size: 2rem;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.plant-info p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    margin: 10px 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Edit Button */
+.btn-warn {
+    background-color: #f39c12;
+    color: white;
+}
+
+.btn-warn:hover {
+    background-color: #e67e22;
+}
+
+/* Delete Button */
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Forms - Card */
+.forms {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+    margin-bottom: 40px;
+}
+
+.forms-header {
+    font-size: 2rem;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-section-title {
+    font-size: 1.5rem;
+    color: #2d6a4f;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border-color: #2d6a4f;
+    outline: none;
+}
+
+/* Submit Button */
+.btn-submit {
+    background-color: #2d6a4f;
+    color: white;
+    padding: 14px 35px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #1b4d3e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Updates Section - Card */
+.updates,
+.status-updates {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+    margin-bottom: 40px;
+}
+
+.updates-header,
+.status-updates-header {
+    font-size: 2rem;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.updates-section-title,
+.status-title {
+    font-size: 1.5rem;
+    color: #2d6a4f;
+    margin-top: 20px;
+}
+
+.updates ul,
+.status-updates ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.updates li,
+.status-updates li {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .plant-detail-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .plant-info,
+    .forms,
+    .updates,
+    .status-updates {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+
+    .forms-header {
+        font-size: 1.8rem;
+    }
+
+    .form-section-title {
+        font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,128 @@
+
+
+/* Main Container */
+.growgreen-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Logo Section */
+.growgreen-logo-section {
+    flex: 1;
+    background-color: #e8f5e9; /* Light green */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.growgreen-logo-container {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.growgreen-logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.growgreen-logo-text {
+    max-width: 300px;
+    height: auto;
+}
+
+/* Login Section */
+.growgreen-login-section {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.growgreen-login-form {
+    max-width: 400px;
+    width: 100%;
+    background-color: #f9f9f9; /* Light card background */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.growgreen-login-header {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2e7d32; /* Rich green */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.growgreen-login-form input,
+.growgreen-login-form select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+}
+
+.growgreen-login-form input:focus {
+    border-color: #2e7d32;
+    outline: none;
+    box-shadow: 0 0 5px rgba(46, 125, 50, 0.2);
+}
+
+.growgreen-login-button {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: #2e7d32; /* Vibrant green */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.growgreen-login-button:hover {
+    background-color: #558b2f; /* Olive green */
+    transform: translateY(-2px);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .growgreen-container {
+        flex-direction: column-reverse;
+    }
+
+    .growgreen-logo-section,
+    .growgreen-login-section {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .growgreen-logo-container {
+        max-width: 150px;
+    }
+
+    .growgreen-logo-text {
+        max-width: 200px;
+    }
+}

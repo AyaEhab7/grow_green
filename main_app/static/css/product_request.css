@@ -1,0 +1,156 @@
+/* General Layout */
+.request-product-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Header */
+.request-product-header {
+    font-size: 2.5rem;
+    color: #1d4e89;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}
+
+/* Form Styling */
+.product-request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #2d6a4f;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    background-color: #1b4d3e;
+    transform: translateY(-2px);
+}
+
+/* Request Table Styling */
+.request-list-header {
+    font-size: 2rem;
+    color: #2d6a4f;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.request-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.request-table th,
+.request-table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.request-table th {
+    background-color: #f4f4f9;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.request-table td {
+    font-size: 1rem;
+    color: #555;
+}
+
+.request-table a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+}
+
+.btn-edit {
+    background-color: #f39c12;
+}
+
+.btn-edit:hover {
+    background-color: #e67e22;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .request-product-container {
+        padding: 20px;
+    }
+
+    .request-product-header {
+        font-size: 2rem;
+    }
+
+    .product-request-form {
+        padding: 15px;
+    }
+
+    .form-input {
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+
+    .request-table th,
+    .request-table td {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .request-table a {
+        padding: 8px 15px;
+    }
+}

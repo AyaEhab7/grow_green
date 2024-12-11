@@ -2,6 +2,7 @@
 
 {% block content %}
   <h1>Request Product: {{ product.name }}</h1>
+  {% if role == "farmer"%}
   <form method="POST">
     {% csrf_token %}
     <label for="farmer_name">Farmer Name:</label>
@@ -17,8 +18,8 @@
 
     <button type="submit">Submit Request</button>
   </form>
-
-  <h2>Product Requests</h2>
+  {% endif %}
+  
   {% if product_requests %}
     <table>
       <thead>
@@ -26,7 +27,9 @@
           <th>Farmer Name</th>
           <th>Quantity Requested</th>
           <th>Status</th>
+          {% if role == "storeController"%}
           <th>Actions</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -35,10 +38,12 @@
             <td>{{ request.farmer_name }}</td>
             <td>{{ request.quantity_requested }}</td>
             <td>{{ request.status }}</td>
+            {% if role == "farmer"%}
             <td>
               <a href="{% url 'product-request-edit' request.id %}">Edit</a> 
               <a href="{% url 'product-request-delete' request.id %}">Delete</a>
             </td>
+            {% endif %}
           </tr>
         {% endfor %}
       </tbody>

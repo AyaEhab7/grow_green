@@ -12,17 +12,17 @@ from django import forms
 from django.urls import reverse_lazy
 from .forms import ProductRequestForm
 from .models import ProductRequest
-from .decorators import admin_required
+from .decorators import admin_required, farmer_required
 from .models import UserProfile
 
 #from .decorators import role_required
 
 @login_required
 def product_create(request):
+    user_profile = UserProfile.objects.get(user=request.user)
     if not request.user.is_superuser: 
-        return redirect('store')
+        return redirect('store', {'role': user_profile.role})
       
-#@role_required(['ADMIN'])
 class Home(LoginView):
     template_name = 'home.html'
 
@@ -42,17 +42,21 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 def about(request):
-    return render(request, 'about.html')
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'about.html', {'role': user_profile.role})
+
 
 @login_required
 def nurseries_index(request):
     nurseries = Nurseries.objects.all()
-    return render(request, 'nurseries/index.html', {'nurseries': nurseries})
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'nurseries/index.html', {'nurseries': nurseries,'role': user_profile.role})
 
 @login_required
 def plant_list(request, nurserie_id):
     plants = Plants.objects.all().filter(nurseries=nurserie_id)
-    return render(request, 'nurseries/plantlist.html', {'plants': plants})
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'nurseries/plantlist.html', {'plants': plants,'role': user_profile.role})
 
 @login_required
 def plant_detail(request, plant_id):
@@ -115,13 +119,20 @@ class PlantDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def store(request):
     products = Product.objects.all()
-    return render(request, 'store/store.html', {'products': products})
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'store/store.html', {
+        'products': products,
+        'role': user_profile.role})
 
 
 @login_required
 def product_detail(request, id):
     product = Product.objects.get(id=id)  
-    return render(request, 'store/product_detail.html', {'product': product})
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'store/product_detail.html', {
+        'product': product, 
+        'role': user_profile.role
+        })
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -152,11 +163,14 @@ class ProductForm(forms.ModelForm):
 
 def product_request_detail(request, product_request_id):
     product_request = get_object_or_404(ProductRequest, id=product_request_id)    
-    return render(request, 'store/request/product_request_detail.html', {'product_request': product_request})
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'store/request/product_request_detail.html', {
+        'product_request': product_request, 
+        'role': user_profile.role})
 
 class ProductRequestUpdateView(LoginRequiredMixin, UpdateView):
     model = ProductRequest
-    fields = ['farmer_name','product', 'quantity_requested']
+    fields = ['product', 'quantity_requested']
     template_name = 'store/request/product_request_form.html'
 
     def get_object(self, queryset=None):
@@ -184,6 +198,7 @@ class ProductRequestForm(forms.ModelForm):
 def product_request(request, product_id):
     product = Product.objects.get(id=product_id)
     product_requests = ProductRequest.objects.filter(product=product)
+    user_profile = UserProfile.objects.get(user=request.user)
 
     if request.method == 'POST':
         quantity = request.POST.get('quantity')
@@ -201,7 +216,8 @@ def product_request(request, product_id):
 
     return render(request, 'store/product_request.html', {
         'product': product,
-        'product_requests': product_requests  
+        'product_requests': product_requests,
+        'role': user_profile.role  
     })
 
 @login_required
@@ -237,15 +253,16 @@ def add_plant(request):
         
     plant_form = PlantForm()
     return render(request, 'main_app/plants_form.html', {
-        'plant_form': plant_form
+        'plant_form': plant_form,
+        
     })
         
 @login_required
 def edit_plant(request, pk):
     plant = get_object_or_404(Plants, pk=pk)
 
-    if plant.user_id != request.user.id:
-        return redirect('nurseries-index') 
+    #if plant.user_id != request.user.id:
+        #return redirect('nurseries-index') 
 
     if request.method == 'POST':
         form = PlantForm(request.POST, instance=plant)

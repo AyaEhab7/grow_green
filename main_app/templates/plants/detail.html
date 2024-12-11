@@ -11,7 +11,7 @@
       <p><strong>Description:</strong> {{ plant.description }}</p>
       <p><strong>Planting day:</strong> {{ plant.date }}</p>
     </div>
-    {% if role == "admin"%}
+    {% if role == "farmer"%}
     <a href="{% url 'edit_plant' plant.id %}" class="btn warn">Edit</a>
     <a href="{% url 'plant-delete' plant.id %}" class="btn danger">Delete</a>
     <!-- Forms to add irrigation, fertilization, and pest control -->
@@ -79,7 +79,7 @@
         {% endfor %}
       </ul>
     </div>
-    {% if role == "admin"%}
+    {% if role == "farmer"%}
     <form action="{% url 'add_status' plant.id %}" method="POST"> 
       {% csrf_token %}
       <h4>Status</h4>

@@ -1,10 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %} 
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/product_form.css' %}"/>
+{% endblock %} 
 {% block content %}
-<h1>{{ view.title|default:"Manage Product" }}</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">{% if form.instance.pk %}Save changes{% else %}Create product{% endif %}</button>
-</form>
+<div class="manage-product-container">
+    <h1 class="manage-product-header">{{ view.title|default:"Manage Product" }}</h1>
+    <form method="POST" enctype="multipart/form-data" class="product-form">
+        {% csrf_token %}
+        <div class="form-fields">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn-submit">{% if form.instance.pk %}Save changes{% else %}Create product{% endif %}</button> 
+    </form>
+</div>
 {% endblock %}

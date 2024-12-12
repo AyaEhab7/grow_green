@@ -1,6 +1,3 @@
-
-
-/* Main Container */
 .growgreen-container {
     display: flex;
     align-items: center;
@@ -14,7 +11,7 @@
     overflow: hidden;
 }
 
-/* Logo Section */
+
 .growgreen-logo-section {
     flex: 1;
     background-color: #e8f5e9; /* Light green */
@@ -66,7 +63,7 @@
 .growgreen-login-header {
     font-size: 2rem;
     font-weight: 700;
-    color: #2e7d32; /* Rich green */
+    color: #2e7d32; 
     text-align: center;
     margin-bottom: 20px;
 }
@@ -84,7 +81,7 @@
 }
 
 .growgreen-login-form input:focus {
-    border-color: #2e7d32;
+    border-color: #799e29;
     outline: none;
     box-shadow: 0 0 5px rgba(46, 125, 50, 0.2);
 }
@@ -93,7 +90,7 @@
     padding: 12px 20px;
     font-size: 1.2rem;
     color: #ffffff;
-    background-color: #2e7d32; /* Vibrant green */
+    background-color: #054d3b; 
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -101,7 +98,7 @@
 }
 
 .growgreen-login-button:hover {
-    background-color: #558b2f; /* Olive green */
+    background-color: #054d3b; 
     transform: translateY(-2px);
 }
 

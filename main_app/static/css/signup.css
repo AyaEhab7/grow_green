@@ -1,7 +1,6 @@
-
 .signup-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 1200px;
     background-color: #ffffff;
     border-radius: 12px;
     padding: 30px;
@@ -20,9 +19,8 @@
     color: #2e7d32; /* Vibrant green */
 }
 
-/* Error Message */
 .signup-error-message {
-    color: #e53935; /* Red for error text */
+    color: #e53935; 
     font-size: 1rem;
     margin-bottom: 15px;
     text-align: center;
@@ -69,7 +67,7 @@
     padding: 12px;
     font-size: 1.2rem;
     color: #ffffff;
-    background-color: #2e7d32;
+    background-color: #054d3b;
     border: none;
     border-radius: 8px;
     cursor: pointer;

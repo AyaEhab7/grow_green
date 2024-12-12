@@ -8,6 +8,10 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
 }
 
+select.form-control {
+    appearance: auto;
+}
+
 .plant-detail-header {
     font-size: 2.5rem;
     color: #2d6a4f;

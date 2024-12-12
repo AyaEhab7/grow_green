@@ -1,11 +1,9 @@
-/* General reset for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Form page container */
 .form-page {
   max-width: 900px;
   margin: 40px auto;
@@ -16,7 +14,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* Form title */
 .form-title {
   font-size: 2.5rem;
   color: olive;
@@ -25,27 +22,23 @@
   margin-bottom: 30px;
 }
 
-/* Form container */
 .form-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Form fields container */
 .form-fields {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Styling for form field labels */
 .form-fields p {
   font-size: 1rem;
   color: #333;
 }
 
-/* Input, select, and textarea styling */
 .form-fields input,
 .form-fields select,
 .form-fields textarea {
@@ -58,20 +51,18 @@
   margin: 5px 0;
 }
 
-/* Focus state for input fields */
 .form-fields input:focus,
 .form-fields select:focus,
 .form-fields textarea:focus {
-  border-color: #007bff;
+  border-color: #054d3b;
   outline: none;
 }
 
-/* Submit button styling */
 .form-submit-btn {
   padding: 12px 25px;
   font-size: 1.1rem;
   font-weight: 600;
-  background-color: #007bff;
+  background-color: #054d3b;
   color: white;
   border-radius: 8px;
   border: none;
@@ -83,7 +74,7 @@
 
 /* Submit button hover effect */
 .form-submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #054d3b;
   transform: translateY(-2px);
 }
 

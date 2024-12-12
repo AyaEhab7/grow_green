@@ -1,21 +1,3 @@
-
-.delete-header {
-    background-color: #2d6a4f; /* Deep green for a strong header */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-bottom: 3px solid #1b4d3e; /* Darker green accent */
-  }
-  
-  .delete-header h1 {
-    font-size: 2.5rem;
-    font-family: 'Georgia', serif;
-    margin: 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  
-  /* Message Styling */
   .delete-message {
     text-align: center;
     margin: 30px 0;
@@ -23,11 +5,11 @@
   
   .delete-message h2 {
     font-size: 1.8rem;
-    color: #2c6e49; /* Slightly muted green for question */
+    color: #e8f5e9; 
     font-weight: normal;
   }
   
-  /* Form Styling */
+  
   .delete-form {
     display: flex;
     flex-direction: column;
@@ -42,7 +24,7 @@
     border: 1px solid #e0e0e0;
   }
   
-  /* Button Styles */
+  
   .btn {
     padding: 12px 30px;
     font-size: 1rem;
@@ -54,42 +36,42 @@
     display: block;
     transition: background-color 0.3s ease, transform 0.3s ease;
     border: none;
-    text-decoration: none; /* Remove underline from links */
+    text-decoration: none; 
   }
   
   .btn:hover {
     transform: translateY(-3px);
   }
   
-  /* Cancel Button (Secondary) */
+  
   .btn.secondary {
     background-color: #f1f1f1;
-    color: #2c6e49; /* Green for cancel */
+    color: #2c6e49; 
     border: 1px solid #d8e2dc;
   }
   
   .btn.secondary:hover {
-    background-color: #e0f2e9; /* Light green on hover */
+    background-color: #e0f2e9; 
   }
   
-  /* Delete Button (Primary) */
+  
   .btn.danger {
-    background-color: #2d6a4f; /* Red background for delete */
+    background-color: #2d6a4f; 
     color: white;
   }
   
   .btn.danger:hover {
-    background-color:  #2d6a4f; /* Darker red on hover */
+    background-color:  #2d6a4f; 
   }
   
-  /* Responsive Layout */
+  
   @media (max-width: 768px) {
     .delete-header h1 {
-      font-size: 2rem; /* Smaller font on mobile */
+      font-size: 2rem; 
     }
   
     .delete-message h2 {
-      font-size: 1.5rem; /* Smaller text for mobile screens */
+      font-size: 1.5rem; 
     }
   
     .btn {
@@ -98,7 +80,7 @@
     }
   
     .delete-form {
-      width: 90%; /* Make the form width more flexible on smaller screens */
+      width: 90%; 
     }
   }
   

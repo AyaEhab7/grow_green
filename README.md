@@ -9,6 +9,11 @@ The project is a Nursery Management Platform aimed at tracking the care and cond
 To explore grow green App:
 - [Grow Green](https://growgreen-app-1a5736e8567d.herokuapp.com/)
 
+
+# ERD 
+
+![alt text](</products/ERD.jpg>)
+
 ## User Stories
 
 ### Farmer
@@ -41,6 +46,22 @@ To explore grow green App:
 
 ## Wireframes
 
+- Sign in page 
+
+![alt text](</products/project4_wireframe 1.png>)
+
+- All Nurseries page 
+
+![alt text](</products/project4_wireframe2.png>)
+
+- Plants Page 
+
+![alt text](</products/project4_wireframe3.png>)
+
+- Products Page 
+
+![alt text](</products/project4_wireframe4.png>)
+
 ## Attributions
 
 - [flexbox design using css tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
@@ -59,3 +80,4 @@ To explore grow green App:
 
 ## Future plans
 - Adding orders page and  confirm order .
+- More efficient CSS .

@@ -27,14 +27,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.store-header {
-    font-size: 2.5rem;
-    color: #1d4e89;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 40px;
-    text-transform: capitalize;
-}
+
 
 /* Products Container */
 .products {

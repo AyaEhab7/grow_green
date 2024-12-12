@@ -5,18 +5,14 @@
 {% endblock %}
 {% block content %}
 
-<div class="delete-header">
-  <h1>Delete Plant?</h1>
-</div>
-
 <div class="delete-message">
-  <h2>Are you sure you want to delete {{ plant.name }}?</h2>
+  <h2>Are you sure you want to delete this plant?</h2>
 </div>
 
 <form action="" method="post" class="delete-form">
   {% csrf_token %}
-  <a href="{% url 'plant_detail' plants.id %}" class="btn secondary">Cancel</a>
   <button type="submit" class="btn danger">Yes - Delete!</button>
+  <a href="{% url 'plant_detail' plants.id %}" class="btn secondary">Cancel</a>
 </form>
 
 {% endblock %}

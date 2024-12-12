@@ -7,15 +7,11 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import IrrigationForm, FertilizationForm, PestControlForm , StatusForm , PlantForm
-#from django.http import HttpResponse
 from django import forms
 from django.urls import reverse_lazy
-from .forms import ProductRequestForm
 from .models import ProductRequest
-from .decorators import admin_required, farmer_required
 from .models import UserProfile
 
-#from .decorators import role_required
 
 @login_required
 def product_create(request):
@@ -42,8 +38,7 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 def about(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'about.html', {'role': user_profile.role})
+    return render(request, 'about.html')
 
 
 @login_required
